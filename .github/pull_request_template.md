@@ -1,13 +1,13 @@
 ### Descriptions:
-_Add PR descriptions here_
+This pull request is to create a new connector for the platform CTM360, CYNA pillar. This connector has one action to pull the cyber news from the platform. 
 
 #### Fix:
-_Add fix/changes here_
+Created the "get_cyber_news" action. 
 
 #### Affected Actions:
-- [ ] All
-- [ ] Check Health
-- [ ] Other Actions
+- [X] All
+- [X] Check Health
+- [X] Other Actions
 
 #### QA Impact:
 - [ ] `full`
