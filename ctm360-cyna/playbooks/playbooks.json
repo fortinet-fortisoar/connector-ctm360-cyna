@@ -1,0 +1,100 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "1adcaa51-d92a-4af9-8915-cc737f9d310e",
+      "@type": "WorkflowCollection",
+      "name": "Sample - CTM360 CYNA - 1.0.0",
+      "description": "This connector allows FortiSOAR to pull cyber news from the CTM360 platform to keep security teams informed of the latest threat intelligence.",
+      "visible": true,
+      "image": null,
+      "recordTags": [
+        "Ctm360",
+        "ctm360-cyna"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "0ea0529a-b6b0-4d34-ba5c-da430bb7445d",
+          "collection": "/api/3/workflow_collections/1adcaa51-d92a-4af9-8915-cc737f9d310e",
+          "triggerLimit": null,
+          "description": "Retrieves the latest cyber news articles and threat intelligence updates from the CTM360 CyNA platform.",
+          "name": "Get Cyber News",
+          "tag": "#CTM360 CYNA",
+          "recordTags": [
+            "Ctm360",
+            "ctm360-cyna"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/25267433-9800-4e15-aab0-26c1b80b03d6",
+          "steps": [
+            {
+              "uuid": "25267433-9800-4e15-aab0-26c1b80b03d6",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "d64c8fad-8713-4a3d-9554-9f54301a520c",
+                "title": "CTM360 CYNA: Get Cyber News",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "a0b59a4c-7bb0-4b0b-b950-96740191f0ef",
+              "@type": "WorkflowStep",
+              "name": "Get Cyber News",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "CTM360 CYNA",
+                "config": "''",
+                "params": {
+                  "search_after": "",
+                  "size": 10
+                },
+                "version": "1.0.0",
+                "connector": "ctm360-cyna",
+                "operation": "get_cyber_news",
+                "operationTitle": "Get Cyber News",
+                "step_variables": {}
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "056ff590-acf8-4b6b-9de8-057a5f11640f",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Cyber News",
+              "sourceStep": "/api/3/workflow_steps/25267433-9800-4e15-aab0-26c1b80b03d6",
+              "targetStep": "/api/3/workflow_steps/a0b59a4c-7bb0-4b0b-b950-96740191f0ef"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

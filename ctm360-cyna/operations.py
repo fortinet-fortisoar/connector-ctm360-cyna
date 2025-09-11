@@ -1,9 +1,9 @@
-""" Copyright start
-  Copyright (C) 2008 - 2023 Fortinet Inc.
-  All rights reserved.
-  FORTINET CONFIDENTIAL & FORTINET PROPRIETARY SOURCE CODE
-  Copyright end """
-
+"""
+Copyright start
+MIT License
+Copyright (c) 2025 Fortinet Inc
+Copyright end
+"""
 import requests
 from connectors.core.connector import get_logger, ConnectorError
 
@@ -27,14 +27,14 @@ error_msg = {
 
 class CTM360:
     def __init__(self, config):
-        self.base_url = config.get('server').strip('/')
-        if not self.base_url.startswith('https://'):
+        self.base_url = config.get('server','').strip('/')
+        if not self.base_url.startswith('https://') and not self.base_url.startswith('http://'):
             self.base_url = 'https://{0}'.format(self.base_url)
-        self.api_key = config['api_key']
-        self.verify_ssl = config['verify_ssl']
+        self.api_key = config.get('api_key')
+        self.verify_ssl = config.get('verify_ssl')
 
     def make_rest_call(self, endpoint, query_params={}, req_params={}, method='GET'):
-        service_endpoint = '{0}/api/v1/{1}'.format(self.base_url, endpoint)
+        service_endpoint = '{0}{1}'.format(self.base_url, endpoint)
         logger.info('Request URL {}'.format(service_endpoint))
 
         try:
@@ -69,16 +69,11 @@ class CTM360:
 
 def _check_health(config):
     ctm = CTM360(config)
-    resp = ctm.make_rest_call(endpoint='news')
+    resp = ctm.make_rest_call(endpoint='/api/v1/news')
     if resp:
         logger.info('connector available')
         return True
     return False
-
-
-def get_boolean_string(value):
-    return 'true' if value else 'false'
-
 
 def filter_params(params):
     filtered_params = {k: v for k,
@@ -88,10 +83,6 @@ def filter_params(params):
 
 def get_cyber_news(config, params):
     ctm = CTM360(config)
-    endpoint = 'news'
-    method = 'GET'
-    request_params = {}
-    request_params = filter_params(request_params)
     query_params = {
         'size': params.get('size'),
         'start_date': params.get('start_date'),
@@ -100,9 +91,7 @@ def get_cyber_news(config, params):
         'search_after': params.get('search_after')
     }
     query_params = filter_params(query_params)
-    response = ctm.make_rest_call(
-        endpoint=endpoint, method=method, query_params=query_params, req_params=request_params)
-    return response
+    return  ctm.make_rest_call(endpoint='/api/v1/news', method='GET', query_params=query_params)
 
 
 operations = {
