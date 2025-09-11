@@ -81,7 +81,7 @@
 
 <h2>Included playbooks</h2>
 
-<p>The <code>Sample - ctm360-cyna - 1.0.0</code> playbook collection comes bundled with the CTM360 CYNA connector. These playbooks contain steps using which you can perform all supported actions. You can see bundled playbooks in the <strong>Automation</strong> &gt; <strong>Playbooks</strong> section in FortiSOAR<sup>TM</sup> after importing the CTM360 CYNA connector.</p>
+<p>The <code>Sample - CTM360 CYNA - 1.0.0</code> playbook collection comes bundled with the CTM360 CYNA connector. These playbooks contain steps using which you can perform all supported actions. You can see bundled playbooks in the <strong>Automation</strong> &gt; <strong>Playbooks</strong> section in FortiSOAR<sup>TM</sup> after importing the CTM360 CYNA connector.</p>
 
 <ul>
 <li>Get Cyber News</li>

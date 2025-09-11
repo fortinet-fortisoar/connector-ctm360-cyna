@@ -6,6 +6,8 @@
   "publisher": "Fortinet SE",
   "category": "Threat Intelligence",
   "contributor": "Reem Moustafa",
+  "cs_approved": false,
+  "cs_compatible": true,
   "icon_small_name": "small.png",
   "icon_large_name": "large.png",
   "help_online": "https://github.com/fortinet-fortisoar/connector-ctm360-cyna/blob/release/1.0.0/docs/readme.md",
@@ -61,6 +63,7 @@
           "visible": true,
           "editable": true,
           "value": "",
+          "description": "Continuation token used to fetch the next set of articles. This will be returned in the response if more articles are available",
           "tooltip": "Continuation token used to fetch the next set of articles. This will be returned in the response if more articles are available"
         },
         {
@@ -70,7 +73,8 @@
           "required": false,
           "visible": true,
           "editable": true,
-          "tooltip": "Comma-separated list of fields to return"
+          "description": "Specify a comma-separated list of fields you want return in the connector action response.",
+          "tooltip": "Specify a comma-separated list of fields you want return in the connector action response."
         },
 
         {
@@ -117,7 +121,7 @@
         }
       ],
       "output_schema": {
-        "success": true,
+        "success": "",
         "message": ""
       }
     }
