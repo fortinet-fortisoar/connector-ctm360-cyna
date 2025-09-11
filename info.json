@@ -1,120 +1,125 @@
 {
-    "name": "ctm360-cyna",
-    "version": "1.0.0",
-    "label": "CTM360 CYNA",
-    "description": "This connector is used to pull Cybernews from the CTM360 platform.",
-    "publisher": "Reem Moustafa",
-    "icon_small_name": "small.png",
-    "icon_large_name": "large.png",
-    "id": 18,
-    "configuration": {
-        "fields": [
-            {
-                "title": "Server URL",
-                "type": "text",
-                "name": "server",
-                "required": true,
-                "visible": true,
-                "editable": true,
-                "value": "https://cyna.ctm360.com",
-                "tooltip": "URL of the CYNA server to which you will connect and perform the automated operations."
-            },
-            {
-                "title": "API Key",
-                "type": "password",
-                "name": "api_key",
-                "required": true,
-                "visible": true,
-                "editable": true,
-                "value": "",
-                "tooltip": "API Key configured for your CYNA server to which you will connect and perform the automated operations."
-            },
-            {
-                "title": "Verify SSL",
-                "type": "checkbox",
-                "name": "verify_ssl",
-                "required": false,
-                "visible": true,
-                "editable": true,
-                "value": true,
-                "tooltip": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
-            }
-        ]
-    },
-    "operations": [
+  "name": "ctm360-cyna",
+  "version": "1.0.0",
+  "label": "CTM360 CYNA",
+  "description": "This connector allows FortiSOAR to pull cyber news from the CTM360 platform to keep security teams informed of the latest threat intelligence.",
+  "publisher": "Fortinet SE",
+  "category": "Threat Intelligence",
+  "contributor": "Reem Moustafa",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
+  "help_online": "https://github.com/fortinet-fortisoar/connector-ctm360-cyna/blob/release/1.0.0/docs/readme.md",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "type": "text",
+        "name": "server",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "value": "https://cyna.ctm360.com",
+        "tooltip": "Provide a server URL of the CyNA server to which the connector will connect to perform automated operations.",
+        "description": "Provide a server URL of the CyNA server to which the connector will connect to perform automated operations."
+      },
+      {
+        "title": "API Key",
+        "type": "password",
+        "name": "api_key",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "value": "",
+        "tooltip": "Provide the API key configured for your CyNA server, which will be used to connect and perform automated operations.",
+        "description": "Provide the API key configured for your CyNA server, which will be used to connect and perform automated operations."
+      },
+      {
+        "title": "Verify SSL",
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "required": false,
+        "visible": true,
+        "editable": true,
+        "value": true,
+        "tooltip": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True.",
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "title": "Get Cyber News",
+      "operation": "get_cyber_news",
+      "annotation": "get_cyber_news",
+      "description": "Retrieves the latest cyber news articles and threat intelligence updates from the CTM360 CyNA platform.",
+      "parameters": [
         {
-            "title": "Get Cyber News",
-            "operation": "get_cyber_news",
-            "description": "",
-            "parameters": [
-                {
-                    "title": "Size",
-                    "type": "integer",
-                    "name": "size",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": 10,
-                    "tooltip": "Number of articles to return (max: 100)"
-                },
-                {
-                    "title": "Start Date",
-                    "type": "text",
-                    "name": "start_date",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "date format should be DD-MM-YYYY hh:mm, for example \"01-01-2021 00:00\""
-                },
-                {
-                    "title": "End Date",
-                    "type": "text",
-                    "name": "end_date",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "date format should be DD-MM-YYYY hh:mm, for example \"01-01-2021 00:00\""
-                },
-                {
-                    "title": "Fields",
-                    "type": "text",
-                    "name": "fields",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Comma-separated list of fields to return"
-                },
-                {
-                    "title": "Search After",
-                    "type": "text",
-                    "name": "search_after",
-                    "required": false,
-                    "visible": true,
-                    "editable": true,
-                    "value": "",
-                    "tooltip": "Continuation token used to fetch the next set of articles. This will be returned in the response if more articles are available"
-                }
-            ],
-            "output_schema": {
-                "success": true,
-                "message": ""
-            },
-            "open": false
+          "title": "Search After",
+          "type": "text",
+          "name": "search_after",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "tooltip": "Continuation token used to fetch the next set of articles. This will be returned in the response if more articles are available"
+        },
+        {
+          "title": "Fields",
+          "type": "text",
+          "name": "fields",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Comma-separated list of fields to return"
+        },
+
+        {
+          "title": "Start Date",
+          "type": "datetime",
+          "name": "start_date",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Select a start date and time from which cyber news articles should be retrieved.",
+          "description": "Select a start date and time from which cyber news articles should be retrieved."
+        },
+        {
+          "title": "End Date",
+          "type": "datetime",
+          "name": "end_date",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Select a end date and time up to which cyber news articles should be retrieved.",
+          "description": "Select a end date and time up to which cyber news articles should be retrieved."
+        },
+        {
+          "title": "Size",
+          "type": "integer",
+          "name": "size",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": 10,
+          "tooltip": "Specifies the number of cyber news articles to retrieve. The maximum allowed value is 100.",
+          "description": "Specifies the number of cyber news articles to retrieve. The maximum allowed value is 100."
+        },
+        {
+          "title": "Offset",
+          "type": "text",
+          "name": "search_after",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "",
+          "description": "Use the continuation token provided in the previous response to retrieve the next batch of articles, if available.",
+          "tooltip": "Use the continuation token provided in the previous response to retrieve the next batch of articles, if available."
         }
-    ],
-    "category": [
-        "Threat Intelligence Exchange"
-    ],
-    "contributor": null,
-    "active": true,
-    "cs_compatible": true,
-    "system": false,
-    "playbook_collections": [],
-    "icon_small": "",
-    "icon_large": "",
-    "help_online": "https://docs.fortinet.com",
-    "vendor_version": null
+      ],
+      "output_schema": {
+        "success": true,
+        "message": ""
+      }
+    }
+  ]
 }
